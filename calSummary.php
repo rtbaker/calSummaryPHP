@@ -6,7 +6,7 @@ require_once 'vendor/autoload.php';
 // Get the config file, use @ so we don't leak any info
 // WARNING !!! Make sure this config file is not in the web server documents directory, otherwise
 // people will be able to see your calendar url's.
-@include_once ('config.php');
+@include_once ('/etc/calSummaryConfig.php');
 
 if (!isset($calConfig)){
 	header("HTTP/1.0 404 Not Found");
