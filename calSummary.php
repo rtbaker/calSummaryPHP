@@ -7,17 +7,37 @@ require_once 'vendor/autoload.php';
 @include_once ('config.php');
 
 if (!isset($calConfig)){
+	header("HTTP/1.0 404 Not Found");
 	print "No config file.\n";
 	exit;
 }
 
-$calURL = $calConfig['sh4d3t']['url'];
-$range = $calConfig['sh4d3t']['range'];
+// Which one ?
+if (!isset($_GET['token'])){
+	header("HTTP/1.0 404 Not Found");
+	print "token not set.\n";
+	exit;
+}
+
+$token = $_GET['token'];
+
+// Valid token ?
+if (!isset($calConfig[$token]['url'])){
+	header("HTTP/1.0 404 Not Found");
+	print "Unknown token.\n";
+	exit;
+}
+
+$calURL = $calConfig[$token]['url'];
+$range = $calConfig[$token]['range'];
+
+if (!isset($range)) { $range = 30; }
 
 // Get the calendar
 try {
 	$cal = VObject\Reader::read(@fopen ($calURL, 'r'));
 } catch (Exception $excep){
+	header("HTTP/1.0 404 Not Found");
 	print "Error opening calendar, check URL ?\n";
 	exit;
 }
@@ -43,13 +63,13 @@ foreach($cal->VEVENT as $event) {
 usort($results, "arraySort");
 
 // Display as a single line of text' 
+header("Content-Type: text/text");
+
 foreach ($results as $event){
 	print "* ";
 	print($event['date']->format('d/m/Y')) . " - ";
 	print($event['event']) . " ";
 }
-
-print "*";
 
 
 function arraySort($a, $b){
