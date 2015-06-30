@@ -4,6 +4,8 @@ use Sabre\VObject;
 require_once 'vendor/autoload.php';
 
 // Get the config file, use @ so we don't leak any info
+// WARNING !!! Make sure this config file is not in the web server documents directory, otherwise
+// people will be able to see your calendar url's.
 @include_once ('config.php');
 
 if (!isset($calConfig)){

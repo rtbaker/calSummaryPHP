@@ -7,6 +7,9 @@ range and calendar will be returned by http://server/calSummary.php?key=KEY.
 
 The range specifies the events to return between now and now plus 'range' days.
 
+MAKE SURE YOU DON'T PUT THE CONFIG FILE IN THE WEB SERVER DOCUMENTS DIRECTORY IF YOU
+DON'T WANT PEOPLE TO SEE THE CONTENTS !
+
 Example config file:
 
     <?php
