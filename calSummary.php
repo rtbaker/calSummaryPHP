@@ -58,7 +58,7 @@ $results = array ();
 
 foreach($cal->VEVENT as $event) {
 	$dtstart = $event->DTSTART->getDateTime();
-	$results[] = [ 'date' => $dtstart, 'event' => $event->SUMMARY ];
+	array_push($results, array('date' => $dtstart, 'event' => $event->SUMMARY));
 }
 
 // Sort by date ascending

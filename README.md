@@ -13,11 +13,11 @@ DON'T WANT PEOPLE TO SEE THE CONTENTS !
 Example config file:
 
     <?php
-    	$calConfig = [
-    		'dfrsf4fd' => [ 'url' => 'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-1234546/basic.ics',
-    										'range' => 30],
-    		'sh4d3t' => [ 'url' => 'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-123456/basic.ics',
-    									'range' => 90],							
-      ];
+    	$calConfig = array(
+    		'dfrsf4fd' => array('url' => 'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-1234546/basic.ics',
+    										'range' => 30),
+    		'sh4d3t' => array('url' => 'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-123456/basic.ics',
+    									'range' => 90),							
+      );
     ?>
 
