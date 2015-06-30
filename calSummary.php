@@ -3,18 +3,24 @@
 use Sabre\VObject;
 require_once 'vendor/autoload.php';
 
-$calConfig = [
-	'dfrsf4fd' => [ 'url' => 'https://www.google.com/calendar/ical/e5dtcl0a60cnlu00ma9mses6sk%40group.calendar.google.com/private-355f178d1421d1d12a94ce6173bde5ec/basic.ics',
-									'range' => 30],
-	'sh4d3t' => [ 'url' => 'https://www.google.com/calendar/ical/e5dtcl0a60cnlu00ma9mses6sk%40group.calendar.google.com/private-355f178d1421d1d12a94ce6173bde5ec/basic.ics',
-														'range' => 90],							
-];
+// Get the config file, use @ so we don't leak any info
+@include_once ('config.php');
+
+if (!isset($calConfig)){
+	print "No config file.\n";
+	exit;
+}
 
 $calURL = $calConfig['sh4d3t']['url'];
 $range = $calConfig['sh4d3t']['range'];
 
 // Get the calendar
-$cal = VObject\Reader::read(fopen ($calURL, 'r'));
+try {
+	$cal = VObject\Reader::read(@fopen ($calURL, 'r'));
+} catch (Exception $excep){
+	print "Error opening calendar, check URL ?\n";
+	exit;
+}
 
 // Expand any repeated events in the next 'range' days
 $now = new DateTime();
@@ -36,7 +42,7 @@ foreach($cal->VEVENT as $event) {
 // Sort by date ascending
 usort($results, "arraySort");
 
-// Display as a single line of text 
+// Display as a single line of text' 
 foreach ($results as $event){
 	print "* ";
 	print($event['date']->format('d/m/Y')) . " - ";
