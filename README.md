@@ -9,18 +9,12 @@ The range specifies the events to return between now and now plus 'range' days.
 
 Example config file:
 
-<code>
-	<?php
+    <?php
+    	$calConfig = [
+    		'dfrsf4fd' => [ 'url' => 'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-1234546/basic.ics',
+    										'range' => 30],
+    		'sh4d3t' => [ 'url' => 'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-123456/basic.ics',
+    									'range' => 90],							
+      ];
+    ?>
 
-	$calConfig = [
-		'dfrsf4fd' => [ 'url' =>
-											'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-1234546/basic.ics',
-										'range' => 30],
-		'sh4d3t' => [ 'url' =>
-										'https://www.google.com/calendar/ical/123456%40group.calendar.google.com/private-123456/basic.ics',
-															'range' => 90],							
-	];
-
-
-	?>
-</code>
